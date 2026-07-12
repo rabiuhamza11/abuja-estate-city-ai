@@ -1,0 +1,13 @@
+{
+  "name": "abuja-estate-city-ai",
+  "version": "1.0.0",
+  "description": "AI-Powered Smart Real Estate & Property Marketplace for Abuja, Nigeria",
+  "keywords": ["real-estate", "abuja", "nigeria", "ai", "property", "construction", "nextjs"],
+  "author": "Rabiu Hamza <hamzarabiu390@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://abuja-estate-city-ai.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rabiuhamza11/abuja-estate-city-ai.git"
+  }
+}
