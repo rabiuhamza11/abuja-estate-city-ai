@@ -1,30 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta http-equiv="refresh" content="0; url=https://abuja-estate-city-ai.vercel.app"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Abuja Estate City AI</title>
-<link rel="canonical" href="https://abuja-estate-city-ai.vercel.app"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abuja Estate City AI — Real Estate, Construction & Property Ecosystem</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;background:#0A0A0F;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
-.container{max-width:400px}
-.logo{font-size:28px;font-weight:800;background:linear-gradient(135deg,#7C3AED,#06B6D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
-.msg{color:#94A3B8;font-size:15px;margin-bottom:24px;line-height:1.6}
-.link{display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#7C3AED,#06B6D4);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px;box-shadow:0 8px 32px rgba(124,58,237,0.3);transition:transform .2s}
-.link:hover{transform:translateY(-2px)}
-.spinner{width:40px;height:40px;border:3px solid rgba(124,58,237,0.2);border-top-color:#7C3AED;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 24px}
-@keyframes spin{to{transform:rotate(360deg)}}
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .tab-btn.active { background:#065f46; color:white; }
+  .spinner { border: 3px solid #e5e7eb; border-top: 3px solid #065f46; border-radius: 50%; width: 24px; height: 24px; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
-<script>window.location.replace("https://abuja-estate-city-ai.vercel.app");</script>
 </head>
-<body>
-<div class="container">
-<div class="logo">Abuja Estate City AI</div>
-<div class="spinner"></div>
-<div class="msg">Redirecting you to the main site...</div>
-<a href="https://abuja-estate-city-ai.vercel.app" class="link">Click here if not redirected</a>
+<body class="bg-gray-50">
+
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div>
+      <h1 class="text-xl font-bold text-emerald-800">Abuja Estate City <span class="text-emerald-500">AI</span></h1>
+      <p class="text-xs text-gray-500">Real Estate · Construction · Property Ecosystem</p>
+    </div>
+    <a href="#inquire" class="bg-emerald-800 text-white px-5 py-2 rounded-lg hover:bg-emerald-900 transition text-sm font-semibold">Book Inspection</a>
+  </div>
+</nav>
+
+<section class="relative">
+  <img src="https://media.base44.com/images/public/6a1e2efdc14fbb292286fb2f/fd9b53285_generated_image.png" class="w-full h-[340px] object-cover" alt="hero">
+  <div class="absolute inset-0 bg-black/50 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 text-white">
+      <p class="uppercase tracking-widest text-emerald-300 text-sm font-semibold mb-2">Phase 1 · Abuja</p>
+      <h2 class="text-3xl md:text-5xl font-bold mb-3 max-w-2xl">The Digital Operating System for Real Estate & Construction</h2>
+      <p class="text-lg opacity-90 max-w-xl">Properties, verified professionals & artisans, building materials, and an AI assistant — all in one place.</p>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-6 py-8">
+
+  <div class="flex flex-wrap gap-2 mb-8 border-b border-gray-200 pb-4" id="tabs">
+    <button class="tab-btn active px-5 py-2.5 rounded-lg font-semibold text-sm bg-gray-100" data-tab="properties">🏠 Real Estate</button>
+    <button class="tab-btn px-5 py-2.5 rounded-lg font-semibold text-sm bg-gray-100" data-tab="professionals">👷 Professionals</button>
+    <button class="tab-btn px-5 py-2.5 rounded-lg font-semibold text-sm bg-gray-100" data-tab="materials">🧱 Materials</button>
+    <button class="tab-btn px-5 py-2.5 rounded-lg font-semibold text-sm bg-gray-100" data-tab="ai">🤖 AI Assistant</button>
+  </div>
+
+  <!-- PROPERTIES TAB -->
+  <div id="tab-properties" class="tab-content">
+    <div class="flex flex-wrap gap-3 mb-6">
+      <select id="filter-type" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+        <option value="">All Types</option>
+        <option>Land</option><option>Residential</option><option>Commercial</option><option>Office</option>
+        <option>Warehouse</option><option>Serviced Apartment</option><option>Luxury Home</option>
+      </select>
+      <select id="filter-listing" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+        <option value="">Sale or Rent</option><option>Sale</option><option>Rent</option><option>Lease</option>
+      </select>
+      <button id="btn-filter-props" class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-sm font-semibold">Filter</button>
+    </div>
+    <div id="properties-grid" class="grid md:grid-cols-3 gap-6"><div class="spinner mx-auto"></div></div>
+  </div>
+
+  <!-- PROFESSIONALS TAB -->
+  <div id="tab-professionals" class="tab-content hidden">
+    <div class="flex flex-wrap gap-3 mb-6">
+      <select id="filter-protype" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+        <option value="">All</option><option>Professional</option><option>Artisan</option>
+      </select>
+      <button id="btn-filter-pros" class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-sm font-semibold">Filter</button>
+    </div>
+    <div id="pros-grid" class="grid md:grid-cols-3 gap-6"><div class="spinner mx-auto"></div></div>
+  </div>
+
+  <!-- MATERIALS TAB -->
+  <div id="tab-materials" class="tab-content hidden">
+    <div id="materials-grid" class="grid md:grid-cols-3 gap-6"><div class="spinner mx-auto"></div></div>
+  </div>
+
+  <!-- AI ASSISTANT TAB -->
+  <div id="tab-ai" class="tab-content hidden">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-900">🏗️ Construction Cost Estimator</h3>
+        <div class="space-y-3">
+          <input id="ai-size" type="number" placeholder="Size (sqm)" class="w-full border border-gray-300 rounded-lg px-4 py-2.5">
+          <select id="ai-finish" class="w-full border border-gray-300 rounded-lg px-4 py-2.5">
+            <option value="basic">Basic Finish</option>
+            <option value="standard" selected>Standard Finish</option>
+            <option value="luxury">Luxury Finish</option>
+          </select>
+          <button id="btn-estimate" class="w-full bg-emerald-800 text-white py-3 rounded-lg font-semibold">Estimate Cost</button>
+        </div>
+        <div id="estimate-result" class="mt-4 text-sm"></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-900">🔍 AI Property Finder</h3>
+        <div class="space-y-3">
+          <input id="ai-budget" type="number" placeholder="Max Budget (NGN)" class="w-full border border-gray-300 rounded-lg px-4 py-2.5">
+          <select id="ai-ptype" class="w-full border border-gray-300 rounded-lg px-4 py-2.5">
+            <option value="">Any Property Type</option>
+            <option>Land</option><option>Residential</option><option>Commercial</option><option>Serviced Apartment</option>
+          </select>
+          <button id="btn-match" class="w-full bg-emerald-800 text-white py-3 rounded-lg font-semibold">Find Matches</button>
+        </div>
+        <div id="match-result" class="mt-4 text-sm"></div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<section id="inquire" class="py-16 bg-emerald-800 text-white">
+  <div class="max-w-2xl mx-auto px-6">
+    <h3 class="text-3xl font-bold text-center mb-8">Book a Site Inspection or General Inquiry</h3>
+    <form id="inquiry-form" class="bg-white rounded-2xl shadow-xl p-8 space-y-4 text-gray-900">
+      <input type="text" name="full_name" placeholder="Full Name" required class="w-full border border-gray-300 rounded-lg px-4 py-3">
+      <div class="grid md:grid-cols-2 gap-4">
+        <input type="email" name="email" placeholder="Email" required class="w-full border border-gray-300 rounded-lg px-4 py-3">
+        <input type="tel" name="phone" placeholder="Phone (+234...)" required class="w-full border border-gray-300 rounded-lg px-4 py-3">
+      </div>
+      <select name="interest" class="w-full border border-gray-300 rounded-lg px-4 py-3">
+        <option>Residential Plot</option><option>Villa</option><option>Commercial Plot</option><option>General Inquiry</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Message" class="w-full border border-gray-300 rounded-lg px-4 py-3"></textarea>
+      <button type="submit" id="submit-btn" class="w-full bg-emerald-800 text-white py-4 rounded-lg font-semibold">Submit Inquiry</button>
+      <p id="form-msg" class="text-center hidden"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-white py-10 text-center">
+  <p class="font-semibold">Abuja Estate City AI</p>
+  <p class="text-gray-400 text-sm">Gousa District, Abuja, Nigeria — Phase 1 · Real Estate & Construction Ecosystem</p>
+</footer>
+
+<script>
+const NGN = (n) => '₦' + Number(n).toLocaleString();
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
+  });
+});
+
+async function loadProperties(filters = {}) {
+  const grid = document.getElementById('properties-grid');
+  grid.innerHTML = '<div class="spinner mx-auto"></div>';
+  const resp = await fetch('/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'properties', ...filters }) });
+  const data = await resp.json();
+  if (!data.properties || !data.properties.length) { grid.innerHTML = '<p class="text-gray-500 col-span-3 text-center">No properties found.</p>'; return; }
+  grid.innerHTML = data.properties.map(p => `
+    <div class="bg-white rounded-2xl shadow overflow-hidden">
+      <div class="h-40 bg-emerald-100 flex items-center justify-center text-4xl">🏠</div>
+      <div class="p-5">
+        <div class="flex justify-between items-start mb-1">
+          <h4 class="font-bold text-gray-900">${p.title}</h4>
+          ${p.verified ? '<span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-semibold">Verified</span>' : ''}
+        </div>
+        <p class="text-sm text-gray-500 mb-2">${p.location}</p>
+        <p class="text-lg font-bold text-emerald-800 mb-2">${NGN(p.price)} <span class="text-xs font-normal text-gray-500">/ ${p.listing_type}</span></p>
+        <p class="text-xs text-gray-500">${p.property_type}${p.bedrooms ? ' · ' + p.bedrooms + ' bed' : ''}${p.size_sqm ? ' · ' + p.size_sqm + ' sqm' : ''}</p>
+      </div>
+    </div>`).join('');
+}
+
+async function loadPros(filters = {}) {
+  const grid = document.getElementById('pros-grid');
+  grid.innerHTML = '<div class="spinner mx-auto"></div>';
+  const resp = await fetch('/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'professionals', ...filters }) });
+  const data = await resp.json();
+  if (!data.professionals || !data.professionals.length) { grid.innerHTML = '<p class="text-gray-500 col-span-3 text-center">None found.</p>'; return; }
+  grid.innerHTML = data.professionals.map(p => `
+    <div class="bg-white rounded-2xl shadow p-5">
+      <div class="flex justify-between items-start mb-1">
+        <h4 class="font-bold text-gray-900">${p.name}</h4>
+        ${p.verified ? '<span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-semibold">Verified</span>' : ''}
+      </div>
+      <p class="text-sm text-emerald-700 font-semibold mb-1">${p.category} <span class="text-gray-400 font-normal">· ${p.pro_type}</span></p>
+      <p class="text-xs text-gray-500 mb-2">${p.bio || ''}</p>
+      <p class="text-sm">⭐ ${p.rating} (${p.reviews_count || 0} reviews) · ${p.experience_years || 0}yrs</p>
+      <p class="text-sm font-semibold text-gray-800 mt-1">${p.hourly_rate ? NGN(p.hourly_rate) + '/hr' : ''}</p>
+    </div>`).join('');
+}
+
+async function loadMaterials() {
+  const grid = document.getElementById('materials-grid');
+  grid.innerHTML = '<div class="spinner mx-auto"></div>';
+  const resp = await fetch('/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'materials' }) });
+  const data = await resp.json();
+  if (!data.materials || !data.materials.length) { grid.innerHTML = '<p class="text-gray-500 col-span-3 text-center">None found.</p>'; return; }
+  grid.innerHTML = data.materials.map(m => `
+    <div class="bg-white rounded-2xl shadow p-5">
+      <h4 class="font-bold text-gray-900 mb-1">${m.name}</h4>
+      <p class="text-xs text-gray-500 mb-2">${m.category} · ${m.supplier_name}</p>
+      <p class="text-lg font-bold text-emerald-800">${NGN(m.price)} <span class="text-xs font-normal text-gray-500">/ ${m.unit}</span></p>
+      <p class="text-xs text-gray-500 mt-1">⭐ ${m.rating} · ${m.in_stock ? 'In Stock' : 'Out of Stock'}</p>
+    </div>`).join('');
+}
+
+document.getElementById('btn-filter-props').addEventListener('click', () => {
+  loadProperties({ property_type: document.getElementById('filter-type').value, listing_type: document.getElementById('filter-listing').value });
+});
+document.getElementById('btn-filter-pros').addEventListener('click', () => {
+  loadPros({ pro_type: document.getElementById('filter-protype').value });
+});
+
+document.getElementById('btn-estimate').addEventListener('click', async () => {
+  const size = document.getElementById('ai-size').value;
+  const finish = document.getElementById('ai-finish').value;
+  const resultEl = document.getElementById('estimate-result');
+  if (!size) { resultEl.innerHTML = '<p class="text-red-600">Enter a size first.</p>'; return; }
+  resultEl.innerHTML = '<div class="spinner"></div>';
+  const resp = await fetch('/functions/abujaEstateAI', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ mode: 'cost_estimate', size_sqm: size, finish_level: finish }) });
+  const data = await resp.json();
+  if (!data.success) { resultEl.innerHTML = '<p class="text-red-600">' + data.error + '</p>'; return; }
+  const e = data.estimate;
+  resultEl.innerHTML = `
+    <div class="bg-emerald-50 rounded-lg p-4">
+      <p class="text-2xl font-bold text-emerald-800 mb-2">${NGN(e.estimated_total_cost)}</p>
+      <p class="text-xs text-gray-600 mb-2">${NGN(e.rate_per_sqm)}/sqm × ${e.size_sqm}sqm (${e.finish_level})</p>
+      <p class="text-xs">Materials: ${NGN(e.breakdown.materials)}</p>
+      <p class="text-xs">Labor: ${NGN(e.breakdown.labor)}</p>
+      <p class="text-xs">Professional Fees: ${NGN(e.breakdown.professional_fees)}</p>
+      <p class="text-xs">Contingency: ${NGN(e.breakdown.contingency)}</p>
+      <p class="text-xs text-gray-500 mt-2">${e.note}</p>
+    </div>`;
+});
+
+document.getElementById('btn-match').addEventListener('click', async () => {
+  const budget = document.getElementById('ai-budget').value;
+  const ptype = document.getElementById('ai-ptype').value;
+  const resultEl = document.getElementById('match-result');
+  resultEl.innerHTML = '<div class="spinner"></div>';
+  const resp = await fetch('/functions/abujaEstateAI', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ mode: 'property_match', budget, property_type: ptype }) });
+  const data = await resp.json();
+  resultEl.innerHTML = `<p class="mb-3 font-semibold text-gray-700">${data.message}</p>` +
+    (data.matches || []).map(p => `<div class="border-b border-gray-100 py-2"><p class="font-semibold text-gray-900">${p.title}</p><p class="text-xs text-gray-500">${p.location} · ${NGN(p.price)}</p></div>`).join('');
+});
+
+document.getElementById('inquiry-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('form-msg');
+  msg.classList.add('hidden');
+  const form = e.target;
+  const payload = { full_name: form.full_name.value, email: form.email.value, phone: form.phone.value, interest: form.interest.value, message: form.message.value };
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  try {
+    const resp = await fetch('/functions/abujaEstateInquiry', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const data = await resp.json();
+    if (!resp.ok || !data.success) throw new Error(data.error || 'Something went wrong');
+    msg.textContent = "Thank you! We've received your inquiry.";
+    msg.className = 'text-center text-emerald-700 font-semibold';
+    msg.classList.remove('hidden');
+    form.reset();
+  } catch (err) {
+    msg.textContent = err.message;
+    msg.className = 'text-center text-red-600 font-semibold';
+    msg.classList.remove('hidden');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Submit Inquiry';
+  }
+});
+
+loadProperties();
+loadPros();
+loadMaterials();
+</script>
+
 </body>
 </html>
