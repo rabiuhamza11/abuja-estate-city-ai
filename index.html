@@ -149,7 +149,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 async function loadProperties(filters = {}) {
   const grid = document.getElementById('properties-grid');
   grid.innerHTML = '<div class="spinner mx-auto"></div>';
-  const resp = await fetch('/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'properties', ...filters }) });
+  const resp = await fetch('https://superagent-2286fb2f.base44.app/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'properties', ...filters }) });
   const data = await resp.json();
   if (!data.properties || !data.properties.length) { grid.innerHTML = '<p class="text-gray-500 col-span-3 text-center">No properties found.</p>'; return; }
   grid.innerHTML = data.properties.map(p => `
@@ -170,7 +170,7 @@ async function loadProperties(filters = {}) {
 async function loadPros(filters = {}) {
   const grid = document.getElementById('pros-grid');
   grid.innerHTML = '<div class="spinner mx-auto"></div>';
-  const resp = await fetch('/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'professionals', ...filters }) });
+  const resp = await fetch('https://superagent-2286fb2f.base44.app/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'professionals', ...filters }) });
   const data = await resp.json();
   if (!data.professionals || !data.professionals.length) { grid.innerHTML = '<p class="text-gray-500 col-span-3 text-center">None found.</p>'; return; }
   grid.innerHTML = data.professionals.map(p => `
@@ -189,7 +189,7 @@ async function loadPros(filters = {}) {
 async function loadMaterials() {
   const grid = document.getElementById('materials-grid');
   grid.innerHTML = '<div class="spinner mx-auto"></div>';
-  const resp = await fetch('/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'materials' }) });
+  const resp = await fetch('https://superagent-2286fb2f.base44.app/functions/abujaEstateData', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ resource: 'materials' }) });
   const data = await resp.json();
   if (!data.materials || !data.materials.length) { grid.innerHTML = '<p class="text-gray-500 col-span-3 text-center">None found.</p>'; return; }
   grid.innerHTML = data.materials.map(m => `
@@ -214,7 +214,7 @@ document.getElementById('btn-estimate').addEventListener('click', async () => {
   const resultEl = document.getElementById('estimate-result');
   if (!size) { resultEl.innerHTML = '<p class="text-red-600">Enter a size first.</p>'; return; }
   resultEl.innerHTML = '<div class="spinner"></div>';
-  const resp = await fetch('/functions/abujaEstateAI', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ mode: 'cost_estimate', size_sqm: size, finish_level: finish }) });
+  const resp = await fetch('https://superagent-2286fb2f.base44.app/functions/abujaEstateAI', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ mode: 'cost_estimate', size_sqm: size, finish_level: finish }) });
   const data = await resp.json();
   if (!data.success) { resultEl.innerHTML = '<p class="text-red-600">' + data.error + '</p>'; return; }
   const e = data.estimate;
@@ -235,7 +235,7 @@ document.getElementById('btn-match').addEventListener('click', async () => {
   const ptype = document.getElementById('ai-ptype').value;
   const resultEl = document.getElementById('match-result');
   resultEl.innerHTML = '<div class="spinner"></div>';
-  const resp = await fetch('/functions/abujaEstateAI', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ mode: 'property_match', budget, property_type: ptype }) });
+  const resp = await fetch('https://superagent-2286fb2f.base44.app/functions/abujaEstateAI', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ mode: 'property_match', budget, property_type: ptype }) });
   const data = await resp.json();
   resultEl.innerHTML = `<p class="mb-3 font-semibold text-gray-700">${data.message}</p>` +
     (data.matches || []).map(p => `<div class="border-b border-gray-100 py-2"><p class="font-semibold text-gray-900">${p.title}</p><p class="text-xs text-gray-500">${p.location} · ${NGN(p.price)}</p></div>`).join('');
@@ -250,7 +250,7 @@ document.getElementById('inquiry-form').addEventListener('submit', async functio
   const payload = { full_name: form.full_name.value, email: form.email.value, phone: form.phone.value, interest: form.interest.value, message: form.message.value };
   btn.disabled = true; btn.textContent = 'Submitting...';
   try {
-    const resp = await fetch('/functions/abujaEstateInquiry', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const resp = await fetch('https://superagent-2286fb2f.base44.app/functions/abujaEstateInquiry', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
     const data = await resp.json();
     if (!resp.ok || !data.success) throw new Error(data.error || 'Something went wrong');
     msg.textContent = "Thank you! We've received your inquiry.";
